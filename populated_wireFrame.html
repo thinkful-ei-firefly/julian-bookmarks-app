@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>populated list</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+<div class='container'>
+    <h1 id="hello" >My Bookmarks</h1>
+    <div>
+        <form action="">
+            <div>
+                <button>Add Bookmark</button>
+                <label for="rank">Minimum Rank</label>
+                <select name="rank" id="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>   
+            </div>
+        </form>
+    </div>
+    <ul>
+        <li>
+                <p>Tech News<p><button>delete</button>
+                rating: 4
+        </li>
+        <li>
+                <p>Dog Video<p><button>delete</button>
+                rating: 5
+        </li>
+    </ul>
+</div><br>
+<p> Store JS <br>
+    <code>
+            const store = {<br>
+                list: [<br>
+                {<br>
+                    id: 1,<br>
+                    title: 'Tech News',<br>
+                    description: 'Tech news from around the world',<br>
+                    url: 'www.technews.com',<br>
+                    rating: 4,<br>
+                    expanded: false<br>
+                },<br>
+                {<br>
+                    id: 2,<br>
+                    title: 'dog video',<br>
+                    description: 'Tech news from around the world',<br>
+                    url: 'www.youtub/dogvid.com',<br>
+                    rating: 5,<br>
+                }<br>
+                ],<br>
+                adding: false,<br>
+                showError: false<br>
+            }
+    </code>
+</p>
+</body>
+</html>

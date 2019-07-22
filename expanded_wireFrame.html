@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Bookmarks</title>
-<link rel="stylesheet" href="index.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+<title>Expanded Item</title>
+<link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
 <div class='container'>
-    <h1 id="hello">My Bookmarkss</h1>
+    <h1 id="hello" >My Bookmarks</h1>
     <div>
         <form action="">
             <div>
@@ -21,8 +20,6 @@
                     <option value="5">5</option>
                 </select>   
             </div>
-
-
         </form>
     </div>
     <ul>
@@ -41,14 +38,32 @@
                 rating: 5
         </li>
     </ul>
-</div>
-</div>
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="scripts/Item.js"></script>
-<script type="text/javascript" src="scripts/store.js"></script>
-<script type="text/javascript" src="scripts/bookmark-list.js"></script>
-<script type="text/javascript" src="scripts/api.js"></script>
-<script type="text/javascript" src="scripts/index.js"></script>
+</div><br>
+<p> Store JS <br>
+    <code>
+            const store = <br>
+            list: [<br>
+                {<br>
+                    id: 1,<br>
+                    title: 'Tech News',<br>
+                    description: 'Tech news from around the world',<br>
+                    url: 'www.technews.com',<br>
+                    rating: 4,<br>
+                    expanded: true<br>
+                },<br>
+                {<br>
+                    id: 2,<br>
+                    title: 'dog video',<br>
+                    description: 'Tech news from around the world',<br>
+                    url: 'www.youtub/dogvid.com',<br>
+                    rating: 5,<br>
+                    expanded: false<br>
+                }<br>
+                ],<br>
+                adding: false,<br>
+                showError: false<br>
+            }<br>
+    </code>
+</p>
 </body>
 </html>
