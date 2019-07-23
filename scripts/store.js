@@ -1,9 +1,9 @@
 'use strict';
 
-const store = (function (){
+const store = (function () {
 
-  const addBookmark = function (item) {
-
+  const addBookmark = function (bookmark) {
+    this.bookmarks.push(bookmark);
   };
 
   const findById = function (id) {
@@ -14,7 +14,7 @@ const store = (function (){
 
   };
 
-  const findAndDelete = function (){
+  const findAndDelete = function () {
 
   };
 
