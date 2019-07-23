@@ -3,11 +3,12 @@
 $(document).ready(function () {
   bookmarkList.bindEventListeners();
   bookmarkList.render();
+  
 
-  api.getItems()
-    .then(res => res.json())
-    .then((items) => {
-      items.forEach((item) => store.addItem(item));
+  api.getBookmarks()
+    .then((bookmarks) => {
+      bookmarks.forEach((bookmark) => store.addBookmark(bookmark));
       bookmarkList.render();
-    });
+    })
+    .catch(err => console.log(err.messag));
 });
