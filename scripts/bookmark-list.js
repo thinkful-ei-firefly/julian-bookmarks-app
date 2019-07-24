@@ -3,29 +3,40 @@
 // eslint-disable-next-line no-unused-vars
 const bookmarkList = function () {
 
+  function generateError(message) {
+    return `
+      <section class="error-content">
+        
+        <h2>${message}</h2>
+      </section>
+    `;
+  }
+  
   function generateBookmarkElement(bookmark) {
-  console.log(bookmark);  
+   
 
-    if(bookmark.expanded === false){
+    if(bookmark.expanded === true){
       return `
     <li class='js-bookmark-element' data-bookmark-id='${bookmark.id}'>
-       ${bookmark.title}
-        <p>Description: ${bookmark.desc}</p>
+      <h3>${bookmark.title}</h3>
+      <p>Description: ${bookmark.desc}</p>
         
         
-        <a href="${bookmark.url}">${bookmark.url}</a><br>
+     <a href="${bookmark.url}">${bookmark.url}</a><br>
         
-        <button class="js-bookmark-delete">delete</button>
-        <button class="js-bookmark-expanded">expand</button>
-        rating: ${bookmark.rating};
-      </li>
+      <p>rating: ${bookmark.rating}</p>
+      <button class="js-bookmark-delete">delete</button>
+      <button class="js-bookmark-expanded">less</button>
+    </li>
     `;
     } else {
       return `
       <li class='js-bookmark-element' data-bookmark-id='${bookmark.id}'>
-      ${bookmark.title}
-      <button class="js-bookmark-delete">delete</button>
-      <button class="js-bookmark-expanded">expand</button>
+        <h3>${bookmark.title}</h3>
+        <p>rating: ${bookmark.rating}</p>
+        <button class="js-bookmark-delete">delete</button>
+        <button class="js-bookmark-expanded">more</button>
+      </li>
       `;
     }
     
@@ -39,12 +50,22 @@ const bookmarkList = function () {
   }
 
   function render() {
-    let bookmarks = [...store.bookmarks];
+    renderError();
+    let bookmarks = store.filterBookmarks();
     console.log('`render` ran');
     const bookmarkListString = generateBookmarkListString(bookmarks);
 
     $('.js-bookmark-list').html(bookmarkListString);
+    
+  }
 
+  function renderError() {
+    if (store.error) {
+      const el = generateError(store.error);
+      $('.error-container').html(el);
+    } else {
+      $('.error-container').empty();
+    }
   }
 
   
@@ -56,13 +77,21 @@ const bookmarkList = function () {
       const desc = $('.js-bookmark-description').val();
       const rating = $('.js-bookmark-rating :selected').val();
       const bookmark = {title, url, desc, rating};
+      
+      $('.js-bookmark-title').val('');
+      $('.js-bookmark-url').val('');
+      $('.js-bookmark-description').val('');
+      $('.js-bookmark-rating :selected').val('');
     
       api.createBookmark(bookmark).then(function (data){
         console.log(data);
         store.addBookmark(data);
         render();
-      }).catch(function (err){
-        console.error(err);
+      }).catch(err => {
+        console.log(err);
+        store.setError(err.message);
+        renderError();
+
       });
     }); 
   };
@@ -79,23 +108,39 @@ const bookmarkList = function () {
       api.deleteBookmark(id).then(function (){
         store.findAndDelete(id);
         render();
-      }).catch(function (err){
-        console.error(err);
+      }).catch((err) => {
+        console.log(err);
+        store.setError(err.message);
+        renderError();
+
       });
     });
   }
 
-  // function handleToggleExpandBookmark() {
-  //   $('.js-bookmark-list').on('click', '.js-bookmark-expanded' , event => {
-  //     const id = getBookmarkIdFromElement(event.currentTarget);
+  function handleToggleExpandBookmark() {
+    $('.js-bookmark-list').on('click', '.js-bookmark-expanded' , event => {
+      const id = getBookmarkIdFromElement(event.currentTarget);
+      const showBookmark = store.findById(id);
+      //console.log(id);
+      showBookmark.expanded = !showBookmark.expanded;
+      render();
+    });
+  }
 
-  //   });
-  // }
+
+  function handleBookmarkRatingFilter() {
+    $('#filter-ratings').on('change', event => {
+      const bookmarkRating = $(event.currentTarget).val();
+      store.ratingFilter = bookmarkRating;
+      render();
+    });
+  }
   
   function bindEventListeners() {
     handleNewBookmarkSubmit();
     handleDeleteBookmark();
     handleToggleExpandBookmark();
+    handleBookmarkRatingFilter();
     //all event listeners in here
   }
   
