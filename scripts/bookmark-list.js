@@ -81,7 +81,7 @@ const bookmarkList = function () {
       $('.js-bookmark-title').val('');
       $('.js-bookmark-url').val('');
       $('.js-bookmark-description').val('');
-      $('.js-bookmark-rating :selected').val('');
+     // $('.js-bookmark-rating :selected').val('');
     
       api.createBookmark(bookmark).then(function (data){
         console.log(data);
