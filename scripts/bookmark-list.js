@@ -94,7 +94,7 @@ const bookmarkList = function () {
 
       });
     }); 
-  };
+  }
 
   function getBookmarkIdFromElement(bookmark) {
     return $(bookmark)

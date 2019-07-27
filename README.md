@@ -1,6 +1,12 @@
 
+<<<<<<< HEAD
 ##### Bookmark Keeper 1.0 allows users to save bookmarks with a description, link and rating. Users can filter their bookmarks by rating and delete bookmarks when they no longer need them.
 
+=======
+https://thinkful-ei-firefly.github.io/julian-bookmarks-app/
+
+##### Bookmark Keeper 1.0 allows users to save bookmarks with a description, link and rating. Users can filter their bookmarks by rating and delete bookmarks when they no longer need them.
+>>>>>>> 03ba219572993b9b16f5a6f8532143c85256cb57
 
 ### User Stories
 
